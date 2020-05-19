@@ -55,9 +55,9 @@ def _bigquery(table_name, field_name):
     try:
       return _SESSION['bq_client']
     except KeyError:
-      key = os.path.join(os.path.dirname(__file__), '..', 'data',
-                         'service-account.json')
-      _SESSION['bq_client'] = bigquery.Client.from_service_account_json(key)
+      # key = os.path.join(os.path.dirname(__file__), '..', 'data',
+      #                   'service-account.json')
+      _SESSION['bq_client'] = bigquery.Client() #.from_service_account_json(key)
       return _SESSION['bq_client']
 
   def _fetch_bq_table_data(table_name):

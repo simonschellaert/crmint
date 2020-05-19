@@ -39,8 +39,8 @@ import requests
 import zeep.cache
 
 
-_KEY_FILE = os.path.join(os.path.dirname(__file__), '..', 'data',
-                         'service-account.json')
+#_KEY_FILE = os.path.join(os.path.dirname(__file__), '..', 'data',
+#                         'service-account.json')
 AVAILABLE = (
     'AutoMLPredictor',
     'BQMLTrainer',
@@ -185,7 +185,7 @@ class BQWorker(Worker):
         'https://www.googleapis.com/auth/bigquery',
         'https://www.googleapis.com/auth/cloud-platform',
         'https://www.googleapis.com/auth/drive')
-    client = bigquery.Client.from_service_account_json(_KEY_FILE)
+    client = bigquery.Client() #.from_service_account_json(_KEY_FILE)
     if self._params['bq_project_id'].strip():
       client.project = self._params['bq_project_id']
     return client
@@ -778,8 +778,8 @@ class MLWorker(Worker):
   """Abstract ML Engine worker."""
 
   def _get_ml_client(self):
-    credentials = ServiceAccountCredentials.from_json_keyfile_name(_KEY_FILE)
-    self._ml_client = build('ml', 'v1', credentials=credentials)
+    #credentials = ServiceAccountCredentials.from_json_keyfile_name(_KEY_FILE)
+    self._ml_client = build('ml', 'v1') #, credentials=credentials)
 
   def _get_ml_job_id(self):
     self._ml_job_id = '%s_%i_%i_%s' % (self.__class__.__name__,

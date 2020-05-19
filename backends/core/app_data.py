@@ -20,8 +20,9 @@ SA_FILE = os.path.join(
     os.path.dirname(__file__),
     '../data/service-account.json'
 )
-with open(SA_FILE) as blog_file:
-  SA_DATA = json.load(blog_file)
+#with open(SA_FILE) as blog_file:
+#  SA_DATA = json.load(blog_file)
+SA_DATA = {'private_key': '', 'client_email': ''}
 
 APP_DATA_FILE = os.path.join(
     os.path.dirname(__file__),
